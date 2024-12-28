@@ -1,0 +1,183 @@
+import {
+  Box,
+  Button,
+  FormControl,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
+
+import { userLogin } from "../../api";
+
+type Props = {
+  setUser: () => void;
+};
+
+const FormLogin = ({ setUser }: Props) => {
+  const [login, setLogin] = useState({
+    userName: "",
+    userPassword: "",
+  });
+  const [errorMsg, setErrorMsg] = useState("");
+  const errors = {
+    user: "User not found",
+    password: "Oops,wrong password",
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+
+      const response = await userLogin(login.userName, login.userPassword);
+      if (response.status === 200) {
+        setErrorMsg("");
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+        setUser();
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setErrorMsg(error.response?.data.message);
+      }
+    }
+  };
+
+  return (
+    <Box>
+      {errorMsg && (
+        <Box pb={2}>
+          <Typography color="#F13636">{errorMsg}</Typography>
+        </Box>
+      )}
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+        onSubmit={handleSubmit}
+      >
+        <FormControl
+          sx={{
+            paddingBottom: "20px",
+            //default border color
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: `${errorMsg == errors.user ? "#F13636" : "#69774C"}`,
+              bgcolor: `${
+                errorMsg == errors.user ? "#ff000010" : "transparent"
+              }`,
+              "& .Mui-focused": {
+                borderColor: "#006F07",
+              },
+            },
+            //focus border color
+            "& .Mui-focused": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#006F07",
+              },
+            },
+            //hover border and label color
+            "&:hover:not(.Mui-focused)": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#5E9662",
+              },
+              "& .MuiInputLabel-outlined": {
+                color: "#5E9662",
+              },
+            },
+            //label
+            "& .MuiInputLabel-outlined": {
+              color: `${errorMsg == errors.user ? "#F13636" : "#69774C"}`,
+              //focus label
+              "&.Mui-focused": {
+                color: "#006F07",
+                fontWeight: "bold",
+              },
+            },
+          }}
+        >
+          <TextField
+            label={"Username"}
+            variant="outlined"
+            size="small"
+            fullWidth
+            onChange={(e) => {
+              setLogin({ ...login, userName: e.target.value });
+            }}
+          />
+        </FormControl>
+        <FormControl
+          sx={{
+            paddingBottom: "20px",
+            //default border color
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: `${
+                errorMsg == errors.password ? "#F13636" : "#69774C"
+              }`,
+              bgcolor: `${
+                errorMsg == errors.password ? "#ff000010" : "transparent"
+              }`,
+              "& .Mui-focused": {
+                borderColor: "#006F07",
+              },
+            },
+            //focus border color
+            "& .Mui-focused": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#006F07",
+              },
+            },
+            //hover border and label color
+            "&:hover:not(.Mui-focused)": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#5E9662",
+              },
+              "& .MuiInputLabel-outlined": {
+                color: "#5E9662",
+              },
+            },
+            //label
+            "& .MuiInputLabel-outlined": {
+              color: `${errorMsg == errors.password ? "#F13636" : "#69774C"}`,
+              //focus label
+              "&.Mui-focused": {
+                color: "#006F07",
+                fontWeight: "bold",
+              },
+            },
+          }}
+        >
+          <TextField
+            label={"Password"}
+            type="password"
+            variant="outlined"
+            size="small"
+            fullWidth
+            onChange={(e) => {
+              setLogin({ ...login, userPassword: e.target.value });
+            }}
+          />
+        </FormControl>
+        <Stack>
+          <Button
+            type="submit"
+            disabled={login.userName === "" || login.userPassword === ""}
+            sx={{
+              borderRadius: "20px",
+              bgcolor: "#4eb356",
+              color: "#3C3352",
+              ":disabled": {
+                bgcolor: "#6cc073ff",
+                color: "#8d8d8d",
+              },
+            }}
+          >
+            Login
+          </Button>
+        </Stack>
+      </form>
+    </Box>
+  );
+};
+
+export default FormLogin;
