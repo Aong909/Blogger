@@ -11,9 +11,10 @@ type Props = {
 };
 
 const LogoutPopup = ({ open, onClose, anchorEl, user }: Props) => {
-  const [, , removeCookie] = useCookies(["token"]);
+  const [cookie, , removeCookie] = useCookies(["token"]);
 
   const handleClick = () => {
+    console.log(cookie);
     removeCookie("token");
     localStorage.removeItem("user");
     console.log("logout");

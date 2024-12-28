@@ -119,7 +119,7 @@ const Personal = () => {
 
   const PopupUpdateUser = () => {
     const data = JSON.parse(localStorage.getItem("user") || "");
-
+    console.log(user.user_id, data.user_id);
     if (user.user_id == data.user_id) {
       return (
         <>
