@@ -46,12 +46,11 @@ const Content = () => {
     );
     const topFollowerData: Follow[] = await getTopFollower();
     setUserID(JSON.parse(userData || "").user_id);
-
     //set content data
     if (id) {
       const contentData = await getContentByBlogID(
         id,
-        JSON.parse(userData || "").user_id
+        JSON.parse(userData).user_id
       );
       const commentData = await getCommentByID(id);
       setComments(commentData);
@@ -267,28 +266,7 @@ const Content = () => {
                         <MoreHoriz />
                       </IconButton>
                     </Stack>
-                    {/* <Popover
-                      open={open}
-                      anchorEl={anchorEl}
-                      onClose={onClose}
-                      anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "right",
-                      }}
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "center",
-                      }}
-                    >
-                      <Box>
-                        <Typography onClick={() => handleClickEdit(content)}>
-                          Edit
-                        </Typography>
-                        <Typography onClick={() => handleClickDelete(content)}>
-                          Delete
-                        </Typography>
-                      </Box>
-                    </Popover> */}
+
                     <PopoverMoreBtn
                       open={open}
                       anchorEl={anchorEl}

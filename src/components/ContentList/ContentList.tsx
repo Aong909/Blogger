@@ -29,8 +29,6 @@ const ContentList = ({ contents, setContent, setFilterContent }: Props) => {
   const open = Boolean(anchorEl);
   const navigator = useNavigate();
 
-  console.log("popOverContent ===> ", popOverContent);
-
   const initAllData = async () => {
     const dataUser = localStorage.getItem("user") || "";
     setUser(dataUser);
@@ -237,6 +235,7 @@ const ContentList = ({ contents, setContent, setFilterContent }: Props) => {
                 direction={"row"}
                 flexWrap={"wrap"}
                 gap={1}
+                mt={1}
               >
                 {item.categories?.map((item, index) => (
                   <Box

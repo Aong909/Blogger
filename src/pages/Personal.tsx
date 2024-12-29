@@ -39,7 +39,7 @@ const Personal = () => {
     user_name: "",
     first_name: "",
     last_name: "",
-    create_at: "",
+    created_at: "",
     email: "",
     following: "",
     follower: "",
@@ -119,7 +119,7 @@ const Personal = () => {
 
   const PopupUpdateUser = () => {
     const data = JSON.parse(localStorage.getItem("user") || "");
-    console.log(user.user_id, data.user_id);
+
     if (user.user_id == data.user_id) {
       return (
         <>
@@ -448,7 +448,7 @@ const Personal = () => {
                 </Typography>
               </Stack>
               <Stack>
-                <Typography>Joined in {CalcDate(user?.create_at)}</Typography>
+                <Typography>Joined in {CalcDate(user?.created_at)}</Typography>
                 <Stack direction={"row"} gap={1}>
                   <Typography fontWeight={600}>{user?.following}</Typography>
                   <Typography>Following</Typography>

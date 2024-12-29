@@ -173,6 +173,7 @@ export const getContentByBlogID = async (
   user_id: string | number
 ) => {
   try {
+    console.log("user_id", user_id);
     const response = await axios.get(
       `http://localhost:8080/api/v1/content/${blog_id}`,
       {

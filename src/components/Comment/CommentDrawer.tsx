@@ -11,7 +11,6 @@ type Props = {
 
 const CommentDrawer = ({ content_id, openComment, setOpenComment }: Props) => {
   const [comments, setComments] = useState<Comment[]>([]);
-  console.log("content_id", content_id);
   useEffect(() => {
     const initData = async () => {
       const commentData: Comment[] = await getCommentByID(content_id);
@@ -21,7 +20,6 @@ const CommentDrawer = ({ content_id, openComment, setOpenComment }: Props) => {
     initData();
   }, []);
 
-  console.log(comments);
   return (
     <Drawer
       anchor="bottom"

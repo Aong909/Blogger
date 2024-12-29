@@ -40,12 +40,6 @@ const FromRegister = ({ setToggle }: Props) => {
         setErrorMsg(err[0]);
       }
     }
-
-    // .then((res) => console.log(res.data))
-    // .catch((error: AxiosError) => {
-    //   console.log(error.response?.data);
-    //   setErrMsg(error.response?.data?.message);
-    // });
   };
 
   return (

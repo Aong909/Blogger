@@ -39,7 +39,7 @@ export type User = {
   last_name: string;
   email: string;
   user_role: string;
-  create_at: string;
+  created_at: string;
 };
 
 export interface UserProfile {
@@ -47,7 +47,7 @@ export interface UserProfile {
   user_name: string;
   first_name: string;
   last_name: string;
-  create_at: string;
+  created_at: string;
   email: string;
   following: string;
   follower: string;
