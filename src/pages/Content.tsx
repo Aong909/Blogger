@@ -288,6 +288,7 @@ const Content = () => {
                       direction={"row"}
                       flexWrap={"wrap"}
                       gap={1}
+                      mt={1}
                     >
                       {content?.categories?.map((item, index) => (
                         <Box
