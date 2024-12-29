@@ -1,11 +1,12 @@
 import axios from "axios";
 import { Descendant } from "slate";
+import { BASE_URL } from "../constants";
 
 //login & register
 export const userLogin = async (userName: string, userPassword: string) => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/api/v1/login",
+      `${BASE_URL}/api/v1/login`,
       {
         userName,
         userPassword,
@@ -28,7 +29,7 @@ export const userRegister = async (
   userPassword: string
 ) => {
   try {
-    const response = await axios.post("http://localhost:8080/api/v1/register", {
+    const response = await axios.post(`${BASE_URL}/api/v1/register`, {
       firstName,
       lastName,
       email,
@@ -46,7 +47,7 @@ export const userRegister = async (
 //user
 export const getAllUser = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/v1/users", {
+    const response = await axios.get(`${BASE_URL}/api/v1/users`, {
       withCredentials: true,
     });
     return response.data.data;
@@ -57,12 +58,9 @@ export const getAllUser = async () => {
 };
 export const getUser = async (id: string | number) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/user/${id}`,
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await axios.get(`${BASE_URL}/api/v1/user/${id}`, {
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -78,7 +76,7 @@ export const updateUser = async (
 ) => {
   try {
     const response = await axios.put(
-      `http://localhost:8080/api/v1/user/${id}`,
+      `${BASE_URL}/api/v1/user/${id}`,
       {
         userName,
         firstName,
@@ -99,7 +97,7 @@ export const updateUser = async (
 //content
 export const getAllContent = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/v1/contents", {
+    const response = await axios.get(`${BASE_URL}/api/v1/contents`, {
       withCredentials: true,
     });
     return response.data.data;
@@ -115,7 +113,7 @@ export const saveContent = async (
 ) => {
   try {
     const response = await axios.post(
-      "http://localhost:8080/api/v1/content",
+      `${BASE_URL}/api/v1/content`,
       {
         user_id: id,
         content: content,
@@ -138,7 +136,7 @@ export const updateContent = async (
 ) => {
   try {
     const response = await axios.put(
-      "http://localhost:8080/api/v1/content",
+      `${BASE_URL}/api/v1/content`,
       {
         blog_id: blog_id,
         content: content,
@@ -156,12 +154,9 @@ export const updateContent = async (
 };
 export const getContentByUserID = async (id: string | number) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/contents/${id}`,
-      {
-        withCredentials: true,
-      }
-    );
+    const response = await axios.get(`${BASE_URL}/api/v1/contents/${id}`, {
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -174,15 +169,12 @@ export const getContentByBlogID = async (
 ) => {
   try {
     console.log("user_id", user_id);
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/content/${blog_id}`,
-      {
-        params: {
-          user_id,
-        },
-        withCredentials: true,
-      }
-    );
+    const response = await axios.get(`${BASE_URL}/api/v1/content/${blog_id}`, {
+      params: {
+        user_id,
+      },
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -192,8 +184,10 @@ export const getContentByBlogID = async (
 export const deleteContentByBlogID = async (blog_id: string | number) => {
   try {
     const response = await axios.delete(
-      `http://localhost:8080/api/v1/content/${blog_id}`,
-      { withCredentials: true }
+      `${BASE_URL}/api/v1/content/${blog_id}`,
+      {
+        withCredentials: true,
+      }
     );
     return response.data.data;
   } catch (error) {
@@ -205,7 +199,7 @@ export const deleteContentByBlogID = async (blog_id: string | number) => {
 //category
 export const getAllCategory = async () => {
   try {
-    const response = await axios.get("http://localhost:8080/api/v1/category", {
+    const response = await axios.get(`${BASE_URL}/api/v1/category`, {
       withCredentials: true,
     });
     return response.data.data;
@@ -216,10 +210,9 @@ export const getAllCategory = async () => {
 };
 export const getTopCategory = async (limit = 10) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/category/${limit}`,
-      { withCredentials: true }
-    );
+    const response = await axios.get(`${BASE_URL}/api/v1/category/${limit}`, {
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -230,10 +223,9 @@ export const getTopCategory = async (limit = 10) => {
 //follow
 export const getFollowingByID = async (user_id: string | number) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/follow/${user_id}`,
-      { withCredentials: true }
-    );
+    const response = await axios.get(`${BASE_URL}/api/v1/follow/${user_id}`, {
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -242,7 +234,7 @@ export const getFollowingByID = async (user_id: string | number) => {
 };
 export const getTopFollower = async (limit: number = 10) => {
   try {
-    const response = await axios.get(`http://localhost:8080/api/v1/follow`, {
+    const response = await axios.get(`${BASE_URL}/api/v1/follow`, {
       params: {
         limit,
       },
@@ -260,7 +252,7 @@ export const saveFollow = async (
 ) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/v1/follow`,
+      `${BASE_URL}/api/v1/follow`,
       {
         user_id: user_id,
         follow_id: follow_id,
@@ -278,7 +270,7 @@ export const saveUnFollow = async (
   follow_id: string | number
 ) => {
   try {
-    const response = await axios.delete(`http://localhost:8080/api/v1/follow`, {
+    const response = await axios.delete(`${BASE_URL}/api/v1/follow`, {
       data: {
         user_id: user_id,
         follow_id: follow_id,
@@ -295,10 +287,9 @@ export const saveUnFollow = async (
 //favorite
 export const getFavoriteByID = async (user_id: string | number) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/favorite/${user_id}`,
-      { withCredentials: true }
-    );
+    const response = await axios.get(`${BASE_URL}/api/v1/favorite/${user_id}`, {
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -311,7 +302,7 @@ export const saveFavorite = async (
 ) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/v1/favorite`,
+      `${BASE_URL}/api/v1/favorite`,
       {
         user_id: user_id,
         blog_id: blog_id,
@@ -329,16 +320,13 @@ export const unSaveFavorite = async (
   blog_id: string | number
 ) => {
   try {
-    const response = await axios.delete(
-      `http://localhost:8080/api/v1/favorite`,
-      {
-        data: {
-          user_id: user_id,
-          blog_id: blog_id,
-        },
-        withCredentials: true,
-      }
-    );
+    const response = await axios.delete(`${BASE_URL}/api/v1/favorite`, {
+      data: {
+        user_id: user_id,
+        blog_id: blog_id,
+      },
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -349,10 +337,9 @@ export const unSaveFavorite = async (
 //bookmark
 export const getBookmarkByID = async (user_id: string | number) => {
   try {
-    const response = await axios.get(
-      `http://localhost:8080/api/v1/bookmark/${user_id}`,
-      { withCredentials: true }
-    );
+    const response = await axios.get(`${BASE_URL}/api/v1/bookmark/${user_id}`, {
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -365,7 +352,7 @@ export const saveBookmark = async (
 ) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/v1/bookmark`,
+      `${BASE_URL}/api/v1/bookmark`,
       {
         user_id: user_id,
         blog_id: blog_id,
@@ -383,16 +370,13 @@ export const unSaveBookmark = async (
   blog_id: string | number
 ) => {
   try {
-    const response = await axios.delete(
-      `http://localhost:8080/api/v1/bookmark`,
-      {
-        data: {
-          user_id: user_id,
-          blog_id: blog_id,
-        },
-        withCredentials: true,
-      }
-    );
+    const response = await axios.delete(`${BASE_URL}/api/v1/bookmark`, {
+      data: {
+        user_id: user_id,
+        blog_id: blog_id,
+      },
+      withCredentials: true,
+    });
     return response.data.data;
   } catch (error) {
     console.error("ERROR:", error);
@@ -404,8 +388,10 @@ export const unSaveBookmark = async (
 export const getCommentByID = async (content_id: string | number) => {
   try {
     const response = await axios.get(
-      `http://localhost:8080/api/v1/comment/${content_id}`,
-      { withCredentials: true }
+      `${BASE_URL}/api/v1/comment/${content_id}`,
+      {
+        withCredentials: true,
+      }
     );
     return response.data.data;
   } catch (error) {
@@ -420,7 +406,7 @@ export const postComment = async (
 ) => {
   try {
     const response = await axios.post(
-      `http://localhost:8080/api/v1/comment`,
+      `${BASE_URL}/api/v1/comment`,
       {
         user_id,
         blog_id,

@@ -29,6 +29,7 @@ import { SETTING, USER } from "../constants";
 import { CalcDate } from "../util";
 import FollowingButton from "../components/ButtonFollow/FollowingButton";
 import FollowButton from "../components/ButtonFollow/FollowButton";
+import axios from "axios";
 
 const Personal = () => {
   const { id } = useParams();
@@ -52,6 +53,7 @@ const Personal = () => {
   });
   const [openSetup, setOpenSetup] = useState(false);
   const [follow, setFollow] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const initData = async () => {
     const localUser = JSON.parse(localStorage.getItem("user") || "");
@@ -94,6 +96,7 @@ const Personal = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrMsg("");
     try {
       const response = await updateUser(
         user?.user_id,
@@ -114,7 +117,14 @@ const Personal = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+      if (axios.isAxiosError(error)) {
+        setErrMsg(error.response?.data.message);
+      }
     }
+  };
+
+  const onClose = () => {
+    setOpenSetup(false);
   };
 
   const PopupUpdateUser = () => {
@@ -138,7 +148,7 @@ const Personal = () => {
             {SETTING.icon}
             <Typography>Set up personal information</Typography>
           </Box>
-          <Drawer open={openSetup} onClose={() => setOpenSetup(false)}>
+          <Drawer open={openSetup} onClose={onClose}>
             <Box
               position={"fixed"}
               top={"50%"}
@@ -169,6 +179,7 @@ const Personal = () => {
                   <Box display={"flex"} flexDirection={"column"} gap={1}>
                     <Stack direction={"row"} alignItems={"center"} gap={1}>
                       <FormHelperText
+                        error={errMsg === "Username is duplicate"}
                         sx={{
                           fontSize: "14px",
                           fontWeight: 600,
@@ -197,9 +208,17 @@ const Personal = () => {
                               textAlign: "center",
                               paddingBottom: "16px",
                               bgcolor: "transparent",
-                              border: "1px solid #3c335257",
+                              border: `${
+                                errMsg === "Username is duplicate"
+                                  ? "1px solid red"
+                                  : "1px solid #3c335257"
+                              }`,
                               "&:focus-within": {
-                                border: "2px solid #3C3352",
+                                border: `${
+                                  errMsg === "Username is duplicate"
+                                    ? "2px solid red"
+                                    : "2px solid #3c335257"
+                                }`,
                                 bgcolor: "transparent",
                               },
                               ":hover": {
@@ -209,6 +228,15 @@ const Personal = () => {
                             },
                           },
                         }}
+                        helperText={
+                          errMsg === "Username is duplicate" ? (
+                            <Typography fontSize={"12px"} color="red">
+                              {errMsg}
+                            </Typography>
+                          ) : (
+                            ""
+                          )
+                        }
                       />
                     </Stack>
                     <Stack direction={"row"} alignItems={"center"} gap={1}>
@@ -306,6 +334,7 @@ const Personal = () => {
                           fontWeight: 600,
                           width: "100px",
                         }}
+                        error={errMsg === "Email is duplicate"}
                       >
                         Email
                       </FormHelperText>
@@ -330,9 +359,17 @@ const Personal = () => {
                               textAlign: "center",
                               paddingBottom: "16px",
                               bgcolor: "transparent",
-                              border: "1px solid #3c335257",
+                              border: `${
+                                errMsg === "Email is duplicate"
+                                  ? "1px solid red"
+                                  : "1px solid #3c335257"
+                              }`,
                               "&:focus-within": {
-                                border: "2px solid #3C3352",
+                                border: `${
+                                  errMsg === "Email is duplicate"
+                                    ? "2px solid red"
+                                    : "2px solid #3c335257"
+                                }`,
                                 bgcolor: "transparent",
                               },
                               ":hover": {
@@ -342,6 +379,15 @@ const Personal = () => {
                             },
                           },
                         }}
+                        helperText={
+                          errMsg === "Email is duplicate" ? (
+                            <Typography fontSize={"12px"} color="red">
+                              {errMsg}
+                            </Typography>
+                          ) : (
+                            ""
+                          )
+                        }
                       />
                     </Stack>
                     <Stack pt={2}>

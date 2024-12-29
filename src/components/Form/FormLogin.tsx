@@ -29,10 +29,9 @@ const FormLogin = ({ setUser }: Props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
-
+      setErrorMsg("");
       const response = await userLogin(login.userName, login.userPassword);
       if (response.status === 200) {
-        setErrorMsg("");
         localStorage.setItem("user", JSON.stringify(response.data.data));
         setUser();
       }
