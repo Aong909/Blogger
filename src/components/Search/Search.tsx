@@ -25,7 +25,6 @@ const Search = ({ contents, setContent }: Props) => {
   const [filterCategories, setFilterCategories] = useState<Category[]>([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
-  console.log("isDropdownVisible", isDropdownVisible);
   const initData = async () => {
     setCategories(await getAllCategory());
     setUsers(await getAllUser());
@@ -46,7 +45,6 @@ const Search = ({ contents, setContent }: Props) => {
 
   const handleSearchChange = (el: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(el.target.value.toLowerCase());
-    console.log(el.target.value, Boolean(el.target.value));
     if (!el.target.value) {
       setFilterCategories([]);
       setFilterUsers([]);
