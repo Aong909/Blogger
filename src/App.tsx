@@ -13,6 +13,9 @@ import Content from "./pages/Content";
 const App = () => {
   const [cookie] = useCookies(["token"]);
   const [user, setUser] = useState<string | null>(null);
+  console.log("user ==> ", user);
+  console.log("cookie", cookie);
+  console.log("COOKIE ===>", document.cookie);
 
   useEffect(() => {
     //handle storage
@@ -24,16 +27,6 @@ const App = () => {
   const storageEventHandle = () => {
     setUser(localStorage.getItem("user") || null);
   };
-
-  // if (!user) {
-  //   console.log("user = ", user);
-  //   console.log("token = ", cookie.token);
-  //   if (cookie.token) {
-  //     return null;
-  //   } else {
-  //     return <Login setUser={storageEventHandle} />;
-  //   }
-  // }
 
   if (!cookie.token) {
     return <Login setUser={storageEventHandle} />;
