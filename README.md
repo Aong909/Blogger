@@ -49,4 +49,4 @@ export default tseslint.config({
 })
 ```
 
-DEMO[https://ssblogger.netlify.app/]
+[DEMO](https://ssblogger.netlify.app/)
