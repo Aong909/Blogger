@@ -1,11 +1,15 @@
 import { useCookies } from "react-cookie";
 
+import useLocalstorage from "../../hook/useLocalstorage";
+
 const logout = () => {
   const [, , removeCookie] = useCookies(["token"]);
+  const { user, storageEventHandle } = useLocalstorage();
 
   removeCookie("token");
   localStorage.removeItem("user");
-  console.log("logout");
+  storageEventHandle();
+  console.log("user ==>", user);
 
   return { logout };
 };

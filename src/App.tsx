@@ -1,39 +1,33 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Editor from "./pages/Editor";
 import Bookmark from "./pages/Bookmark";
 import Following from "./pages/Following";
-import { useEffect, useState } from "react";
 import Personal from "./pages/Personal";
 import Content from "./pages/Content";
+import useLocalstorage from "./hook/useLocalstorage";
+import { useEffect } from "react";
+import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
-  const [cookie] = useCookies(["token"]);
-  const [user, setUser] = useState<string | null>(null);
-  console.log("user ==> ", user);
-  console.log("cookie", cookie);
-  console.log("COOKIE ===>", document.cookie);
+  const { user, storageEventHandle } = useLocalstorage();
+
+  // if (!cookie.token) {
+  //   return <Login setUser={storageEventHandle} />;
+  // } else {
+  //   if (!user) {
+  //     return <Login setUser={storageEventHandle} />;
+  //   }
+  // }
 
   useEffect(() => {
-    //handle storage
-    setUser(localStorage.getItem("user") || null);
-
-    window.addEventListener("storage", storageEventHandle, false);
+    console.log("in Use Effect");
   }, [localStorage.getItem("user")]);
 
-  const storageEventHandle = () => {
-    setUser(localStorage.getItem("user") || null);
-  };
-
-  if (!cookie.token) {
+  if (!user) {
     return <Login setUser={storageEventHandle} />;
-  } else {
-    if (!user) {
-      return <Login setUser={storageEventHandle} />;
-    }
   }
 
   return (
@@ -43,31 +37,34 @@ const App = () => {
         v7_startTransition: true,
       }}
     >
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <Routes>
-        <Route path="/home" element={<Home />} />
-      </Routes>
-      <Routes>
-        <Route path="/post" element={<Editor />} />
-      </Routes>
-      <Routes>
-        <Route path="/edit/:id" element={<Editor />} />
-      </Routes>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Navbar setLocalUser={storageEventHandle} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+        </Routes>
+        <Routes>
+          <Route path="/post" element={<Editor />} />
+        </Routes>
+        <Routes>
+          <Route path="/edit/:id" element={<Editor />} />
+        </Routes>
 
-      <Routes>
-        <Route path="/bookmark" element={<Bookmark />} />
-      </Routes>
-      <Routes>
-        <Route path="/following" element={<Following />} />
-      </Routes>
-      <Routes>
-        <Route path="/personal/:id" element={<Personal />} />
-      </Routes>
-      <Routes>
-        <Route path="/content/:id" element={<Content />} />
-      </Routes>
+        <Routes>
+          <Route path="/bookmark" element={<Bookmark />} />
+        </Routes>
+        <Routes>
+          <Route path="/following" element={<Following />} />
+        </Routes>
+        <Routes>
+          <Route path="/personal/:id" element={<Personal />} />
+        </Routes>
+        <Routes>
+          <Route path="/content/:id" element={<Content />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

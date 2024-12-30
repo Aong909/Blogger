@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
 // import CategoryList from "../components/CategoryList/CategoryList";
-import Navbar from "../components/Navbar/Navbar";
 import {
   getFollowingByID,
   getTopFollower,
@@ -108,8 +107,7 @@ const Following = () => {
   };
 
   return (
-    <Box display={"flex"} maxWidth={"1180px"} pt={1} mr={"auto"} ml={"auto"}>
-      <Navbar />
+    <Box display={"flex"} maxWidth={"1180px"} pt={1}>
       <Box
         display={"flex"}
         justifyContent={"space-between"}

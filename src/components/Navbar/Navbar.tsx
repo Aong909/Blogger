@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import { User } from "../../types";
 import LogoutPopup from "../Logout/LogoutPopup";
 
-const Navbar = () => {
+type Props = {
+  setLocalUser: () => void;
+};
+
+const Navbar = ({ setLocalUser }: Props) => {
   const [user, setUser] = useState<User>({
     user_id: 999999,
     user_name: "",
@@ -45,6 +49,8 @@ const Navbar = () => {
       height={"98vh"}
       // width={{ sm: "fit-content", md: "260px" }}
       minWidth={"60px"}
+      pt={1}
+      alignSelf={"center"}
     >
       <Stack
         mb={2}
@@ -141,6 +147,7 @@ const Navbar = () => {
         onClose={onClose}
         anchorEl={anchorEl}
         user={user}
+        setLocalUser={setLocalUser}
       />
     </Box>
   );

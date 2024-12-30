@@ -10,7 +10,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MoreHoriz } from "@mui/icons-material";
 
-import Navbar from "../components/Navbar/Navbar";
 import TopFollower from "../components/TopFollower/TopFollower";
 import { BOOKMARK, COMMENT, FAVORITE, USER } from "../constants";
 import {
@@ -176,8 +175,7 @@ const Content = () => {
   };
   return (
     <div>
-      <Box display={"flex"} maxWidth={"1180px"} pt={1} mr={"auto"} ml={"auto"}>
-        <Navbar />
+      <Box display={"flex"} maxWidth={"1180px"} pt={1}>
         <Box
           display={"flex"}
           justifyContent={"space-between"}

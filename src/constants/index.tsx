@@ -31,7 +31,8 @@ import {
 } from "@mui/icons-material";
 
 // export const BASE_URL = "http://localhost:8080";
-export const BASE_URL = "https://server-blogger.onrender.com";
+// export const BASE_URL = "https://server-blogger.onrender.com";
+export const BASE_URL = "https://server-blogger.vercel.app";
 
 export const HEADINGS = ["h1", "h2", "h3", "h4", "h5", "h6"];
 

@@ -23,7 +23,6 @@ import {
 } from "../api";
 import CategoryList from "../components/CategoryList/CategoryList";
 import ContentList from "../components/ContentList/ContentList";
-import Navbar from "../components/Navbar/Navbar";
 import Search from "../components/Search/Search";
 import { SETTING, USER } from "../constants";
 import { CalcDate } from "../util";
@@ -432,8 +431,7 @@ const Personal = () => {
   };
 
   return (
-    <Box display={"flex"} maxWidth={"1180px"} pt={1} mr={"auto"} ml={"auto"}>
-      <Navbar />
+    <Box display={"flex"} maxWidth={"1180px"} pt={1}>
       <Box
         display={"flex"}
         justifyContent={"space-between"}

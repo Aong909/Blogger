@@ -1,7 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import Navbar from "../components/Navbar/Navbar";
 import CategoryList from "../components/CategoryList/CategoryList";
 import ContentList from "../components/ContentList/ContentList";
 import Search from "../components/Search/Search";
@@ -39,8 +38,7 @@ const Home = () => {
   }, []);
 
   return (
-    <Box display={"flex"} maxWidth={"1180px"} pt={1} mr={"auto"} ml={"auto"}>
-      <Navbar />
+    <Box display={"flex"} maxWidth={"1180px"} pt={1}>
       <Box
         display={"flex"}
         justifyContent={"space-between"}
