@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 import { Category, Content } from "../../types";
-import { getTopCategory } from "../../api";
+import { getTopCategory } from "../../services";
 
 type Props = {
   contents: Content[];

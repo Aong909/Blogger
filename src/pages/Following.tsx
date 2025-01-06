@@ -5,14 +5,14 @@ import {
   getTopFollower,
   saveFollow,
   saveUnFollow,
-} from "../api";
+} from "../services";
 import { useEffect, useState } from "react";
 import { Follow } from "../types";
 import TopFollower from "../components/TopFollower/TopFollower";
 import FollowList from "../components/FollowList/FollowList";
 
 const Following = () => {
-  const [follows, setFollow] = useState<Follow[]>([]);
+  const [follows, setFollows] = useState<Follow[]>([]);
   const [topFollower, setTopFollower] = useState<Follow[]>([]);
 
   const initData = async () => {
@@ -64,7 +64,7 @@ const Following = () => {
         }
       });
 
-    setFollow(followerDataMapping);
+    setFollows(followerDataMapping);
     setTopFollower(topFollowMapping);
   };
 
@@ -86,7 +86,7 @@ const Following = () => {
       }
       return item;
     });
-    setFollow(updateFollow);
+    setFollows(updateFollow);
   };
 
   const handleClickTopFollow = (follow: Follow) => {

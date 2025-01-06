@@ -53,6 +53,13 @@ export interface UserProfile {
   follower: string;
 }
 
+export interface UpdateUserProfile {
+  userName: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
 export type Category = {
   category_id: number;
   category_name: string;

@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import { useState } from "react";
 
-import { userLogin } from "../../api";
+import { userLogin } from "../../services";
 
 type Props = {
   setUser: () => void;

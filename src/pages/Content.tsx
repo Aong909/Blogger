@@ -21,7 +21,7 @@ import {
   postComment,
   saveFollow,
   saveUnFollow,
-} from "../api";
+} from "../services";
 import { Comment, Content as ContentType, Follow } from "../types";
 import { MyEditor } from "../components/MyEditor/MyEditor";
 import { CalcDate } from "../util";
@@ -173,6 +173,8 @@ const Content = () => {
       navigator(`/edit/${con.blog_id}`);
     }
   };
+
+  console.log(content);
   return (
     <div>
       <Box display={"flex"} maxWidth={"1180px"} pt={1}>

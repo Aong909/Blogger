@@ -6,7 +6,7 @@ import ContentList from "../components/ContentList/ContentList";
 import Search from "../components/Search/Search";
 import { Blog_id, Content } from "../types";
 import { useEffect, useState } from "react";
-import { getAllContent, getBookmarkByID, getFavoriteByID } from "../api";
+import { getAllContent, getBookmarkByID, getFavoriteByID } from "../services";
 
 const Home = () => {
   const [contents, setContent] = useState<Content[]>([]);

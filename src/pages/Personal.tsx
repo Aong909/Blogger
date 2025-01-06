@@ -1,34 +1,28 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Drawer,
-  FormHelperText,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
-import { Blog_id, Content, Follow, UserProfile } from "../types";
+import {
+  Blog_id,
+  Content,
+  Follow,
+  UpdateUserProfile,
+  UserProfile,
+} from "../types";
 import {
   getBookmarkByID,
   getContentByUserID,
   getFavoriteByID,
   getFollowingByID,
   getUser,
-  saveFollow,
-  saveUnFollow,
-  updateUser,
-} from "../api";
+} from "../services";
 import CategoryList from "../components/CategoryList/CategoryList";
 import ContentList from "../components/ContentList/ContentList";
 import Search from "../components/Search/Search";
-import { SETTING, USER } from "../constants";
+import { USER } from "../constants";
 import { CalcDate } from "../util";
-import FollowingButton from "../components/ButtonFollow/FollowingButton";
-import FollowButton from "../components/ButtonFollow/FollowButton";
-import axios from "axios";
+
+import PopupUpdateUser from "../components/PopupUpdateUser/PopupUpdateUser";
 
 const Personal = () => {
   const { id } = useParams();
@@ -44,15 +38,13 @@ const Personal = () => {
     following: "",
     follower: "",
   });
-  const [updateInfo, setUpdateInfo] = useState({
+  const [updateInfo, setUpdateInfo] = useState<UpdateUserProfile>({
     userName: "",
     firstName: "",
     lastName: "",
     email: "",
   });
-  const [openSetup, setOpenSetup] = useState(false);
-  const [follow, setFollow] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
+  const [isFollow, setIsFollow] = useState(false);
 
   const initData = async () => {
     const localUser = JSON.parse(localStorage.getItem("user") || "");
@@ -85,7 +77,7 @@ const Personal = () => {
         email: userData.email,
       });
       // set follower
-      setFollow(follows.some((fol) => fol.following_id == Number(id)));
+      setIsFollow(follows.some((fol) => fol.following_id == Number(id)));
     }
   };
 
@@ -93,340 +85,32 @@ const Personal = () => {
     initData();
   }, [id]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setErrMsg("");
-    try {
-      const response = await updateUser(
-        user?.user_id,
-        updateInfo.userName,
-        updateInfo.firstName,
-        updateInfo.lastName,
-        updateInfo.email
-      );
-      if (response === "Update success") {
-        setUser((prev) => ({
-          ...prev,
-          user_name: updateInfo.userName,
-          first_name: updateInfo.firstName,
-          last_name: updateInfo.lastName,
-          email: updateInfo.email,
-        }));
-        setOpenSetup(false);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      if (axios.isAxiosError(error)) {
-        setErrMsg(error.response?.data.message);
-      }
-    }
+  const updateDataUser = () => {
+    setUser((prev) => ({
+      ...prev,
+      user_name: updateInfo.userName,
+      first_name: updateInfo.firstName,
+      last_name: updateInfo.lastName,
+      email: updateInfo.email,
+    }));
   };
 
-  const onClose = () => {
-    setOpenSetup(false);
+  const onFollow = () => {
+    setIsFollow(true);
+  };
+  const onUnfollow = () => {
+    setIsFollow(true);
   };
 
-  const PopupUpdateUser = () => {
-    const data = JSON.parse(localStorage.getItem("user") || "");
-
-    if (user.user_id == data.user_id) {
-      return (
-        <>
-          <Box
-            display={"flex"}
-            justifyContent={"center"}
-            px={"12px"}
-            py={"4px"}
-            borderRadius={"20px"}
-            border={1}
-            borderColor={"#3C3352"}
-            gap={"4px"}
-            sx={{ cursor: "pointer" }}
-            onClick={() => setOpenSetup(true)}
-          >
-            {SETTING.icon}
-            <Typography>Set up personal information</Typography>
-          </Box>
-          <Drawer open={openSetup} onClose={onClose}>
-            <Box
-              position={"fixed"}
-              top={"50%"}
-              left={"50%"}
-              width={"500px"}
-              borderRadius={"20px"}
-              bgcolor={"#D3EE98"}
-              p={2}
-              pb={5}
-              sx={{ transform: "translate(-50%,-50%)" }}
-            >
-              <Stack
-                sx={{ cursor: "pointer" }}
-                onClick={() => setOpenSetup(false)}
-              >
-                ✖
-              </Stack>
-              <Stack>
-                <Typography
-                  fontSize={"18px"}
-                  fontWeight={600}
-                  textAlign={"center"}
-                  pb={2}
-                >
-                  Update personal information
-                </Typography>
-                <form onSubmit={handleSubmit}>
-                  <Box display={"flex"} flexDirection={"column"} gap={1}>
-                    <Stack direction={"row"} alignItems={"center"} gap={1}>
-                      <FormHelperText
-                        error={errMsg === "Username is duplicate"}
-                        sx={{
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          width: "100px",
-                        }}
-                      >
-                        User Name
-                      </FormHelperText>
-                      <TextField
-                        size="small"
-                        variant="filled"
-                        value={updateInfo?.userName}
-                        onChange={(e) =>
-                          setUpdateInfo({
-                            ...updateInfo,
-                            userName: e.target.value,
-                          })
-                        }
-                        fullWidth
-                        required
-                        slotProps={{
-                          input: {
-                            disableUnderline: true,
-                            sx: {
-                              height: "38px",
-                              textAlign: "center",
-                              paddingBottom: "16px",
-                              bgcolor: "transparent",
-                              border: `${
-                                errMsg === "Username is duplicate"
-                                  ? "1px solid red"
-                                  : "1px solid #3c335257"
-                              }`,
-                              "&:focus-within": {
-                                border: `${
-                                  errMsg === "Username is duplicate"
-                                    ? "2px solid red"
-                                    : "2px solid #3c335257"
-                                }`,
-                                bgcolor: "transparent",
-                              },
-                              ":hover": {
-                                border: "1px solid #3C3352",
-                                bgcolor: "transparent",
-                              },
-                            },
-                          },
-                        }}
-                        helperText={
-                          errMsg === "Username is duplicate" ? (
-                            <Typography fontSize={"12px"} color="red">
-                              {errMsg}
-                            </Typography>
-                          ) : (
-                            ""
-                          )
-                        }
-                      />
-                    </Stack>
-                    <Stack direction={"row"} alignItems={"center"} gap={1}>
-                      <FormHelperText
-                        sx={{
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          width: "100px",
-                        }}
-                      >
-                        First Name
-                      </FormHelperText>
-                      <TextField
-                        size="small"
-                        variant="filled"
-                        value={updateInfo?.firstName}
-                        onChange={(e) =>
-                          setUpdateInfo({
-                            ...updateInfo,
-                            firstName: e.target.value,
-                          })
-                        }
-                        fullWidth
-                        required
-                        slotProps={{
-                          input: {
-                            disableUnderline: true,
-                            sx: {
-                              height: "38px",
-                              textAlign: "center",
-                              paddingBottom: "16px",
-                              bgcolor: "transparent",
-                              border: "1px solid #3c335257",
-                              "&:focus-within": {
-                                border: "2px solid #3C3352",
-                                bgcolor: "transparent",
-                              },
-                              ":hover": {
-                                border: "1px solid #3C3352",
-                                bgcolor: "transparent",
-                              },
-                            },
-                          },
-                        }}
-                      />
-                    </Stack>
-                    <Stack direction={"row"} alignItems={"center"} gap={1}>
-                      <FormHelperText
-                        sx={{
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          width: "100px",
-                        }}
-                      >
-                        Last Name
-                      </FormHelperText>
-                      <TextField
-                        size="small"
-                        variant="filled"
-                        value={updateInfo?.lastName}
-                        onChange={(e) =>
-                          setUpdateInfo({
-                            ...updateInfo,
-                            lastName: e.target.value,
-                          })
-                        }
-                        fullWidth
-                        required
-                        slotProps={{
-                          input: {
-                            disableUnderline: true,
-                            sx: {
-                              height: "38px",
-                              textAlign: "center",
-                              paddingBottom: "16px",
-                              bgcolor: "transparent",
-                              border: "1px solid #3c335257",
-                              "&:focus-within": {
-                                border: "2px solid #3C3352",
-                                bgcolor: "transparent",
-                              },
-                              ":hover": {
-                                border: "1px solid #3C3352",
-                                bgcolor: "transparent",
-                              },
-                            },
-                          },
-                        }}
-                      />
-                    </Stack>
-                    <Stack direction={"row"} alignItems={"center"} gap={1}>
-                      <FormHelperText
-                        sx={{
-                          fontSize: "14px",
-                          fontWeight: 600,
-                          width: "100px",
-                        }}
-                        error={errMsg === "Email is duplicate"}
-                      >
-                        Email
-                      </FormHelperText>
-                      <TextField
-                        type="email"
-                        size="small"
-                        variant="filled"
-                        value={updateInfo?.email}
-                        onChange={(e) =>
-                          setUpdateInfo({
-                            ...updateInfo,
-                            email: e.target.value,
-                          })
-                        }
-                        fullWidth
-                        required
-                        slotProps={{
-                          input: {
-                            disableUnderline: true,
-                            sx: {
-                              height: "38px",
-                              textAlign: "center",
-                              paddingBottom: "16px",
-                              bgcolor: "transparent",
-                              border: `${
-                                errMsg === "Email is duplicate"
-                                  ? "1px solid red"
-                                  : "1px solid #3c335257"
-                              }`,
-                              "&:focus-within": {
-                                border: `${
-                                  errMsg === "Email is duplicate"
-                                    ? "2px solid red"
-                                    : "2px solid #3c335257"
-                                }`,
-                                bgcolor: "transparent",
-                              },
-                              ":hover": {
-                                border: "1px solid #3C3352",
-                                bgcolor: "transparent",
-                              },
-                            },
-                          },
-                        }}
-                        helperText={
-                          errMsg === "Email is duplicate" ? (
-                            <Typography fontSize={"12px"} color="red">
-                              {errMsg}
-                            </Typography>
-                          ) : (
-                            ""
-                          )
-                        }
-                      />
-                    </Stack>
-                    <Stack pt={2}>
-                      <Button
-                        type="submit"
-                        sx={{
-                          bgcolor: "#72BF78",
-                          color: "#3C3352",
-                          fontWeight: 600,
-                        }}
-                      >
-                        Update
-                      </Button>
-                    </Stack>
-                  </Box>
-                </form>
-              </Stack>
-            </Box>
-          </Drawer>
-        </>
-      );
-    } else {
-      const handleClickFollow = (fol: boolean) => {
-        if (fol) {
-          setFollow(false);
-          saveUnFollow(data.user_id, user.user_id);
-        } else {
-          setFollow(true);
-          saveFollow(data.user_id, user.user_id);
-        }
-      };
-      return (
-        <Box>
-          {follow ? (
-            <FollowingButton follow={follow} handleClick={handleClickFollow} />
-          ) : (
-            <FollowButton follow={follow} handleClick={handleClickFollow} />
-          )}
-        </Box>
-      );
+  const UpdateInfoData = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    field: string
+  ) => {
+    if (field) {
+      setUpdateInfo({
+        ...updateInfo,
+        [field]: e.target.value,
+      });
     }
   };
 
@@ -476,7 +160,15 @@ const Personal = () => {
               >
                 {USER.largeIcon}
               </Box>
-              {PopupUpdateUser()}
+              <PopupUpdateUser
+                user={user}
+                updateInfo={updateInfo}
+                isFollow={isFollow}
+                onFollow={onFollow}
+                onUnfollow={onUnfollow}
+                UpdateInfoData={UpdateInfoData}
+                updateDataUser={updateDataUser}
+              />
             </Stack>
             <Stack
               direction={"row"}

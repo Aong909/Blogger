@@ -2,7 +2,7 @@ import { Button, FormControl, Stack, TextField } from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
 
-import { userRegister } from "../../api";
+import { userRegister } from "../../services";
 
 type Props = {
   setToggle: (value: boolean) => void;
@@ -18,9 +18,10 @@ const FromRegister = ({ setToggle }: Props) => {
   });
   const [checkPassword, setCheckPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setErrorMsg("");
     try {
       const response = await userRegister(
         register.firstName,
@@ -175,6 +176,7 @@ const FromRegister = ({ setToggle }: Props) => {
         <TextField
           label={"Username"}
           error={errorMsg === "Username"}
+          helperText={errorMsg === "Username" ? "Username is duplicate" : ""}
           required
           variant="outlined"
           size="small"
@@ -221,6 +223,7 @@ const FromRegister = ({ setToggle }: Props) => {
           label={"E-mail"}
           type="email"
           error={errorMsg === "Email"}
+          helperText={errorMsg === "Email" ? "Email is duplicate" : ""}
           required
           variant="outlined"
           size="small"

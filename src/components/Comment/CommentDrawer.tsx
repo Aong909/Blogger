@@ -1,7 +1,7 @@
 import { Drawer, Box, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Comment } from "../../types";
-import { getCommentByID } from "../../api";
+import { getCommentByID } from "../../services";
 
 type Props = {
   content_id: number;

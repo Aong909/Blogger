@@ -15,7 +15,7 @@ import {
   getContentByBlogID,
   saveContent,
   updateContent,
-} from "../api";
+} from "../services";
 import { Category, Content, User } from "../types";
 import { useNavigate, useParams } from "react-router-dom";
 

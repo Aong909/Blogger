@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import CategoryList from "../components/CategoryList/CategoryList";
 import ContentList from "../components/ContentList/ContentList";
 import Search from "../components/Search/Search";
-import { getAllContent, getBookmarkByID, getFavoriteByID } from "../api";
+import { getAllContent, getBookmarkByID, getFavoriteByID } from "../services";
 import { useEffect, useState } from "react";
 import { Content, Blog_id } from "../types";
 

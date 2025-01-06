@@ -10,7 +10,7 @@ import {
   saveFavorite,
   unSaveBookmark,
   unSaveFavorite,
-} from "../../api";
+} from "../../services";
 import { CalcDate } from "../../util";
 import { Link, useNavigate } from "react-router-dom";
 import { MoreHoriz } from "@mui/icons-material";
@@ -114,6 +114,7 @@ const ContentList = ({ contents, setContent, setFilterContent }: Props) => {
     );
   }
 
+  console.log(contents);
   return (
     <Stack width={"100%"} gap={2}>
       {contents.map((item) => (

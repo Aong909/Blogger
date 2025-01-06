@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 
 import { SEARCH, USER } from "../../constants";
-import { getAllCategory, getAllUser } from "../../api";
+import { getAllCategory, getAllUser } from "../../services";
 import { Category, Content, User } from "../../types";
 import { Link } from "react-router-dom";
 
