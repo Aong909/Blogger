@@ -62,16 +62,16 @@ const FromRegister = ({ setToggle }: Props) => {
           //focus border color
           "& .Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#006F07",
+              borderColor: "#1F4529",
             },
           },
           //hover border and label color
           "&:hover:not(.Mui-focused)": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#5E9662",
+              borderColor: "#47663B",
             },
             "& .MuiInputLabel-outlined": {
-              color: "#5E9662",
+              color: "#47663B",
             },
           },
           //label
@@ -79,7 +79,7 @@ const FromRegister = ({ setToggle }: Props) => {
             color: `${"#69774C"}`,
             //focus label
             "&.Mui-focused": {
-              color: "#006F07",
+              color: "#1F4529",
               fontWeight: "bold",
             },
           },
@@ -106,16 +106,16 @@ const FromRegister = ({ setToggle }: Props) => {
           //focus border color
           "& .Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#006F07",
+              borderColor: "#1F4529",
             },
           },
           //hover border and label color
           "&:hover:not(.Mui-focused)": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#5E9662",
+              borderColor: "#47663B",
             },
             "& .MuiInputLabel-outlined": {
-              color: "#5E9662",
+              color: "#47663B",
             },
           },
           //label
@@ -123,7 +123,7 @@ const FromRegister = ({ setToggle }: Props) => {
             color: `${"#69774C"}`,
             //focus label
             "&.Mui-focused": {
-              color: "#006F07",
+              color: "#1F4529",
               fontWeight: "bold",
             },
           },
@@ -150,16 +150,16 @@ const FromRegister = ({ setToggle }: Props) => {
           //focus border color
           "& .Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#006F07",
+              borderColor: "#1F4529",
             },
           },
           //hover border and label color
           "&:hover:not(.Mui-focused)": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#5E9662",
+              borderColor: "#47663B",
             },
             "& .MuiInputLabel-outlined": {
-              color: "#5E9662",
+              color: "#47663B",
             },
           },
           //label
@@ -167,7 +167,7 @@ const FromRegister = ({ setToggle }: Props) => {
             color: `${"#69774C"}`,
             //focus label
             "&.Mui-focused": {
-              color: "#006F07",
+              color: "#1F4529",
               fontWeight: "bold",
             },
           },
@@ -196,16 +196,16 @@ const FromRegister = ({ setToggle }: Props) => {
           //focus border color
           "& .Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#006F07",
+              borderColor: "#1F4529",
             },
           },
           //hover border and label color
           "&:hover:not(.Mui-focused)": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#5E9662",
+              borderColor: "#47663B",
             },
             "& .MuiInputLabel-outlined": {
-              color: "#5E9662",
+              color: "#47663B",
             },
           },
           //label
@@ -213,7 +213,7 @@ const FromRegister = ({ setToggle }: Props) => {
             color: `${"#69774C"}`,
             //focus label
             "&.Mui-focused": {
-              color: "#006F07",
+              color: "#1F4529",
               fontWeight: "bold",
             },
           },
@@ -243,16 +243,16 @@ const FromRegister = ({ setToggle }: Props) => {
           //focus border color
           "& .Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#006F07",
+              borderColor: "#1F4529",
             },
           },
           //hover border and label color
           "&:hover:not(.Mui-focused)": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#5E9662",
+              borderColor: "#47663B",
             },
             "& .MuiInputLabel-outlined": {
-              color: "#5E9662",
+              color: "#47663B",
             },
           },
           //label
@@ -260,7 +260,7 @@ const FromRegister = ({ setToggle }: Props) => {
             color: `${"#69774C"}`,
             //focus label
             "&.Mui-focused": {
-              color: "#006F07",
+              color: "#1F4529",
               fontWeight: "bold",
             },
           },
@@ -288,16 +288,16 @@ const FromRegister = ({ setToggle }: Props) => {
           //focus border color
           "& .Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#006F07",
+              borderColor: "#1F4529",
             },
           },
           //hover border and label color
           "&:hover:not(.Mui-focused)": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "#5E9662",
+              borderColor: "#47663B",
             },
             "& .MuiInputLabel-outlined": {
-              color: "#5E9662",
+              color: "#47663B",
             },
           },
           //label
@@ -305,7 +305,7 @@ const FromRegister = ({ setToggle }: Props) => {
             color: `${"#69774C"}`,
             //focus label
             "&.Mui-focused": {
-              color: "#006F07",
+              color: "#1F4529",
               fontWeight: "bold",
             },
           },
@@ -337,11 +337,11 @@ const FromRegister = ({ setToggle }: Props) => {
           }
           sx={{
             borderRadius: "20px",
-            bgcolor: "#4eb356",
-            color: "#3C3352",
+            border: "2px solid #1F4529",
+            color: "#1F4529",
             ":disabled": {
-              bgcolor: "#6cc073ff",
-              color: "#8d8d8d",
+              border: "2px solid #91C788",
+              color: "#91C788",
             },
           }}
         >

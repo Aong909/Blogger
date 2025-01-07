@@ -59,37 +59,40 @@ const FormLogin = ({ setUser }: Props) => {
         <FormControl
           sx={{
             paddingBottom: "20px",
+            input: {
+              color: "#ffffff",
+            },
             //default border color
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: `${errorMsg == errors.user ? "#F13636" : "#69774C"}`,
+              borderColor: `${errorMsg == errors.user ? "#F13636" : "#ebebeb"}`,
               bgcolor: `${
                 errorMsg == errors.user ? "#ff000010" : "transparent"
               }`,
               "& .Mui-focused": {
-                borderColor: "#006F07",
+                borderColor: "#ffffff",
               },
             },
             //focus border color
             "& .Mui-focused": {
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#006F07",
+                borderColor: "#ffffff",
               },
             },
             //hover border and label color
             "&:hover:not(.Mui-focused)": {
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#5E9662",
+                borderColor: "#dddddd",
               },
               "& .MuiInputLabel-outlined": {
-                color: "#5E9662",
+                color: "#dddddd",
               },
             },
             //label
             "& .MuiInputLabel-outlined": {
-              color: `${errorMsg == errors.user ? "#F13636" : "#69774C"}`,
+              color: `${errorMsg == errors.user ? "#F13636" : "#ebebeb"}`,
               //focus label
               "&.Mui-focused": {
-                color: "#006F07",
+                color: "#ffffff",
                 fontWeight: "bold",
               },
             },
@@ -108,39 +111,43 @@ const FormLogin = ({ setUser }: Props) => {
         <FormControl
           sx={{
             paddingBottom: "20px",
+            input: {
+              color: "#ffffff",
+            },
             //default border color
             "& .MuiOutlinedInput-notchedOutline": {
               borderColor: `${
-                errorMsg == errors.password ? "#F13636" : "#69774C"
+                errorMsg == errors.password ? "#F13636" : "#ebebeb"
               }`,
               bgcolor: `${
                 errorMsg == errors.password ? "#ff000010" : "transparent"
               }`,
+              color: "#ffffff",
               "& .Mui-focused": {
-                borderColor: "#006F07",
+                borderColor: "#ffffff",
               },
             },
             //focus border color
             "& .Mui-focused": {
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#006F07",
+                borderColor: "#ffffff",
               },
             },
             //hover border and label color
             "&:hover:not(.Mui-focused)": {
               "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#5E9662",
+                borderColor: "#dddddd",
               },
               "& .MuiInputLabel-outlined": {
-                color: "#5E9662",
+                color: "#dddddd",
               },
             },
             //label
             "& .MuiInputLabel-outlined": {
-              color: `${errorMsg == errors.password ? "#F13636" : "#69774C"}`,
+              color: `${errorMsg == errors.password ? "#F13636" : "#ebebeb"}`,
               //focus label
               "&.Mui-focused": {
-                color: "#006F07",
+                color: "#ffffff",
                 fontWeight: "bold",
               },
             },
@@ -163,11 +170,11 @@ const FormLogin = ({ setUser }: Props) => {
             disabled={login.userName === "" || login.userPassword === ""}
             sx={{
               borderRadius: "20px",
-              bgcolor: "#4eb356",
-              color: "#3C3352",
+              border: "2px solid #ffffff",
+              color: "#ffffff",
               ":disabled": {
-                bgcolor: "#6cc073ff",
-                color: "#8d8d8d",
+                border: "2px solid #bebebe",
+                color: "#bebebe",
               },
             }}
           >
