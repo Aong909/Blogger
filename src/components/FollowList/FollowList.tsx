@@ -25,8 +25,7 @@ const FollowList = ({ follows, handleClickFollow }: Props) => {
           key={follow.following_id}
           p={"10px"}
           display={"flex"}
-          borderRadius={"20px"}
-          bgcolor={"#FEFF9F"}
+          borderBottom={"1px solid #1F4529"}
           justifyContent={"space-between"}
           alignItems={"center"}
           color="#3c3352"

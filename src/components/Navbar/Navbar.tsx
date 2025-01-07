@@ -52,11 +52,7 @@ const Navbar = ({ setLocalUser }: Props) => {
       pt={1}
       alignSelf={"center"}
     >
-      <Stack
-        mb={2}
-        px={"4px"}
-        alignItems={{ xs: "flex-end", lg: "flex-start" }}
-      >
+      <Stack mb={2} px={"10px"} alignItems={{ xs: "center", lg: "flex-start" }}>
         <Link to={"/"}>{LOGO.icon}</Link>
       </Stack>
       <Stack spacing={2} alignItems={{ xs: "flex-end", lg: "flex-start" }}>
@@ -71,7 +67,7 @@ const Navbar = ({ setLocalUser }: Props) => {
           >
             <Button
               sx={{
-                color: "#3c3352",
+                color: "#1F4529",
                 borderRadius: "30px",
                 paddingRight: "20px",
               }}
@@ -99,7 +95,7 @@ const Navbar = ({ setLocalUser }: Props) => {
         <Button
           sx={{
             width: "100%",
-            color: "#3C3352",
+            color: "#1F4529",
             borderRadius: "30px",
             textTransform: "none",
           }}
@@ -118,7 +114,7 @@ const Navbar = ({ setLocalUser }: Props) => {
                   justifyContent: "center",
                   alignItems: "center",
                   borderRadius: "100%",
-                  bgcolor: "#72BF78",
+                  border: "1px solid #1F4529",
                   width: "50px",
                   height: "50px",
                 }}

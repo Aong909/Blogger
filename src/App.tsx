@@ -10,6 +10,7 @@ import Content from "./pages/Content";
 import useLocalstorage from "./hook/useLocalstorage";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
+import "./style.css";
 
 const App = () => {
   const { user, storageEventHandle } = useLocalstorage();
@@ -37,33 +38,31 @@ const App = () => {
         v7_startTransition: true,
       }}
     >
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Navbar setLocalUser={storageEventHandle} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-        <Routes>
-          <Route path="/home" element={<Home />} />
-        </Routes>
-        <Routes>
-          <Route path="/post" element={<Editor />} />
-        </Routes>
-        <Routes>
-          <Route path="/edit/:id" element={<Editor />} />
-        </Routes>
-
-        <Routes>
-          <Route path="/bookmark" element={<Bookmark />} />
-        </Routes>
-        <Routes>
-          <Route path="/following" element={<Following />} />
-        </Routes>
-        <Routes>
-          <Route path="/personal/:id" element={<Personal />} />
-        </Routes>
-        <Routes>
-          <Route path="/content/:id" element={<Content />} />
-        </Routes>
+      <div
+        style={{
+          display: "flex",
+          width: "100vw",
+          height: "100vh",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <Navbar setLocalUser={storageEventHandle} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/post" element={<Editor />} />
+            <Route path="/edit/:id" element={<Editor />} />
+            <Route path="/bookmark" element={<Bookmark />} />
+            <Route path="/following" element={<Following />} />
+            <Route path="/personal/:id" element={<Personal />} />
+            <Route path="/content/:id" element={<Content />} />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   );

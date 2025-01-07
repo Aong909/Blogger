@@ -122,8 +122,7 @@ const ContentList = ({ contents, setContent, setFilterContent }: Props) => {
           key={item.blog_id}
           p={"10px"}
           display={"flex"}
-          borderRadius={"20px"}
-          bgcolor={"#FEFF9F"}
+          borderBottom={"1px solid #1F4529"}
         >
           <Link to={`/personal/${item.user_id}`}>
             <Box>
@@ -134,8 +133,8 @@ const ContentList = ({ contents, setContent, setFilterContent }: Props) => {
                 width={"50px"}
                 height={"50px"}
                 borderRadius={"100%"}
-                bgcolor={"#72BF78"}
-                color={"#3C3352"}
+                border={"1px solid #1F4529"}
+                color={"#1F4529"}
               >
                 {USER.icon}
               </Box>
@@ -241,7 +240,7 @@ const ContentList = ({ contents, setContent, setFilterContent }: Props) => {
                 {item.categories?.map((item, index) => (
                   <Box
                     key={index}
-                    bgcolor={"#72BF78"}
+                    border={"1px solid #1F4529"}
                     px={1}
                     py={"4px"}
                     color={"#3C3352"}

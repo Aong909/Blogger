@@ -83,7 +83,7 @@ const PopupUpdateUser = ({
           py={"4px"}
           borderRadius={"20px"}
           border={1}
-          borderColor={"#3C3352"}
+          borderColor={"#fcfcfc"}
           gap={"4px"}
           sx={{ cursor: "pointer" }}
           onClick={onOpen}
@@ -98,7 +98,8 @@ const PopupUpdateUser = ({
             left={"50%"}
             width={"500px"}
             borderRadius={"20px"}
-            bgcolor={"#D3EE98"}
+            bgcolor={"#fcfcfc"}
+            color={"#1F4529"}
             p={2}
             pb={5}
             sx={{ transform: "translate(-50%,-50%)" }}
@@ -252,7 +253,7 @@ const PopupUpdateUser = ({
                       }}
                     />
                   </Stack>
-                  <Stack direction={"row"} alignItems={"center"} gap={1}>
+                  {/* <Stack direction={"row"} alignItems={"center"} gap={1}>
                     <FormHelperText
                       sx={{
                         fontSize: "14px",
@@ -309,13 +310,14 @@ const PopupUpdateUser = ({
                         )
                       }
                     />
-                  </Stack>
+                  </Stack> */}
                   <Stack pt={2}>
                     <Button
                       type="submit"
                       sx={{
-                        bgcolor: "#72BF78",
-                        color: "#3C3352",
+                        borderRadius: "20px",
+                        border: "1px solid #1F4529",
+                        color: "#1F4529",
                         fontWeight: 600,
                       }}
                     >

@@ -127,6 +127,8 @@ const Personal = () => {
           minWidth={"520px"}
           flex={1}
           flexDirection={"column"}
+          borderLeft={"1px solid #1F4529"}
+          borderRight={"1px solid #1F4529"}
           gap={2}
           sx={{
             overflowX: "hidden",
@@ -136,16 +138,15 @@ const Personal = () => {
           <Box
             display={"flex"}
             flexDirection={"column"}
-            bgcolor={"#72BF78"}
+            bgcolor={"#1F4529"}
             p={"10px"}
-            borderRadius={"20px"}
             gap={2}
           >
             <Stack
               direction={"row"}
               justifyContent={"space-between"}
               alignItems={"center"}
-              color={"#3C3352"}
+              color={"#fcfcfc"}
             >
               <Box
                 display={"flex"}
@@ -153,10 +154,10 @@ const Personal = () => {
                 alignItems={"center"}
                 borderRadius={"100%"}
                 border={1}
-                borderColor={"#3C3352"}
+                borderColor={"#fcfcfc"}
+                color={"#fcfcfc"}
                 width={"80px"}
                 height={"80px"}
-                bgcolor={"#72BF78"}
               >
                 {USER.largeIcon}
               </Box>
@@ -173,7 +174,7 @@ const Personal = () => {
             <Stack
               direction={"row"}
               justifyContent={"space-between"}
-              color={"#3C3352"}
+              color={"#fcfcfc"}
             >
               <Stack>
                 <Typography fontWeight={600} fontSize={"20px"}>

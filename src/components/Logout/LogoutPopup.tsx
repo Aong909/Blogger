@@ -12,13 +12,7 @@ type Props = {
   setLocalUser: () => void;
 };
 
-const LogoutPopup = ({
-  open,
-  onClose,
-  anchorEl,
-  user,
-  setLocalUser,
-}: Props) => {
+const LogoutPopup = ({ open, onClose, anchorEl, setLocalUser }: Props) => {
   const [, , removeCookie] = useCookies(["token"]);
   const { storageEventHandle } = useLocalstorage();
 
@@ -47,8 +41,8 @@ const LogoutPopup = ({
           paper: {
             sx: {
               borderRadius: "20px",
-              bgcolor: "#d3ee98",
-              border: "1px solid #b398ee",
+              bgcolor: "#ffffff",
+              border: "1px solid #1F4529",
             },
           },
         }}
@@ -61,7 +55,6 @@ const LogoutPopup = ({
           onClick={handleClick}
         >
           <Typography>Logout</Typography>
-          <Typography>{user.user_name}</Typography>
         </Box>
       </Popover>
     </>

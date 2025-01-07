@@ -91,8 +91,8 @@ const Search = ({ contents, setContent }: Props) => {
           position={"absolute"}
           p={1}
           width={"100%"}
-          bgcolor={"#d3ee98"}
-          border={"1px solid #b398ee"}
+          bgcolor={"#fcfcfc"}
+          border={"1px solid #1F4529"}
           borderRadius={"10px"}
           sx={{ boxSizing: "border-box", boxShadow: 3 }}
         >
@@ -107,8 +107,8 @@ const Search = ({ contents, setContent }: Props) => {
         position={"absolute"}
         p={1}
         width={"100%"}
-        bgcolor={"#d3ee98"}
-        border={"1px solid #b398ee"}
+        bgcolor={"#fcfcfc"}
+        border={"1px solid #1F4529"}
         borderRadius={"10px"}
         sx={{ boxSizing: "border-box", boxShadow: 3 }}
       >
@@ -157,8 +157,8 @@ const Search = ({ contents, setContent }: Props) => {
                 width={"38px"}
                 height={"38px"}
                 borderRadius={"100%"}
-                bgcolor={"#72BF78"}
-                color={"#3C3352"}
+                border={"1px solid #1F4529"}
+                color={"#1F4529"}
               >
                 {USER.smallIcon}
               </Box>

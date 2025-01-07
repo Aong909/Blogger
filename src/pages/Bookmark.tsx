@@ -53,6 +53,8 @@ const Bookmark = () => {
           minWidth={"520px"}
           flex={1}
           flexDirection={"column"}
+          borderLeft={"1px solid #1F4529"}
+          borderRight={"1px solid #1F4529"}
           gap={2}
           sx={{
             overflowX: "hidden",

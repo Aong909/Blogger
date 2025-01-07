@@ -191,10 +191,10 @@ export const NAVBAR_ITEM = [
 export const LOGO = {
   icon: (
     <Dashboard
-      sx={{ fontSize: "44px", color: "#3C3352", paddingRight: "10px" }}
+      sx={{ fontSize: "44px", color: "#1F4529", paddingRight: "10px" }}
     />
   ),
-  smallIcon: <Dashboard sx={{ fontSize: "32px", color: "#3C3352" }} />,
+  smallIcon: <Dashboard sx={{ fontSize: "32px", color: "#1F4529" }} />,
 };
 
 export const USER = {
@@ -208,7 +208,7 @@ export const SETTING = {
 };
 
 export const SEARCH = {
-  icon: <Search sx={{ color: "#3C3352" }} />,
+  icon: <Search sx={{ color: "#1F4529" }} />,
 };
 
 export const COMMENT = {

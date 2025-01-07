@@ -30,7 +30,12 @@ const CategoryList = ({ contents, setContent }: Props) => {
     setContent(updateContents);
   };
   return (
-    <Box py={"10px"} px={"14px"} borderRadius={"20px"} bgcolor={"#FEFF9F"}>
+    <Box
+      py={"10px"}
+      px={"14px"}
+      borderRadius={"20px"}
+      border={"1px solid #1F4529"}
+    >
       <Typography mb={2}>Popular category</Typography>
       <Stack gap={2} overflow={"hidden"} height={"auto"}>
         {category.map((el, index) => (

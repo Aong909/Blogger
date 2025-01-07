@@ -51,6 +51,8 @@ const Home = () => {
           flex={1}
           flexDirection={"column"}
           gap={2}
+          borderLeft={"1px solid #1F4529"}
+          borderRight={"1px solid #1F4529"}
           sx={{
             overflowX: "hidden",
             overflowY: "inherit",
@@ -58,13 +60,14 @@ const Home = () => {
         >
           <Link to={"/post"} style={{ textDecoration: "none" }}>
             <Stack
-              width={"100%"}
+              width={"96%"}
               alignItems={"center"}
               py={1}
               borderRadius={"20px"}
-              bgcolor={"#72BF78"}
+              bgcolor={"#1F4529"}
+              margin={"auto"}
             >
-              <Typography fontSize={"18px"} fontWeight={600} color="#3C3352">
+              <Typography fontSize={"18px"} fontWeight={600} color="#fcfcfc">
                 POST
               </Typography>
             </Stack>

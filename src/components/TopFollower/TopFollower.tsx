@@ -12,7 +12,12 @@ type Props = {
 
 const TopFollower = ({ handleClickFollow, topFollower }: Props) => {
   return (
-    <Box py={"10px"} px={"14px"} borderRadius={"20px"} bgcolor={"#FEFF9F"}>
+    <Box
+      py={"10px"}
+      px={"14px"}
+      borderRadius={"20px"}
+      border={"1px solid #1F4529"}
+    >
       <Typography mb={2}>Recommended</Typography>
 
       {topFollower.map((follow) => (
