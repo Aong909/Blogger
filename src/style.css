@@ -67,16 +67,16 @@ div::-webkit-scrollbar {
 }
 
 div::-webkit-scrollbar-track {
-  background: #72bf78;
+  background: #fcfcfc;
 }
 
 /* Handle */
 div::-webkit-scrollbar-thumb {
-  background: #b398ee;
+  background: #1f4529;
   border-radius: 6px;
 }
 
 /* Handle on hover */
 div::-webkit-scrollbar-thumb:hover {
-  background: #3c3352;
+  background: #91c788;
 }
