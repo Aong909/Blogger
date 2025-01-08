@@ -99,7 +99,7 @@ const Personal = () => {
     setIsFollow(true);
   };
   const onUnfollow = () => {
-    setIsFollow(true);
+    setIsFollow(false);
   };
 
   const UpdateInfoData = (

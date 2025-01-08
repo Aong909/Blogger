@@ -4,9 +4,10 @@ import { Follow } from "../../types";
 type Props = {
   follow: Follow | boolean;
   handleClick: (Follow: Follow | any) => void;
+  color?: string;
 };
 
-const FollowButton = ({ follow, handleClick }: Props) => {
+const FollowButton = ({ follow, handleClick, color }: Props) => {
   return (
     <Box
       display={"flex"}
@@ -14,16 +15,15 @@ const FollowButton = ({ follow, handleClick }: Props) => {
       px={2}
       py={0.5}
       borderRadius={"20px"}
-      bgcolor={"#72BF78"}
       border={1}
-      borderColor={"#3c3352"}
+      borderColor={color ? color : "#1F4529"}
+      color={color ? color : "#1F4529"}
       onClick={() => handleClick(follow)}
       sx={{
         cursor: "pointer",
         ":hover": {
           bgcolor: "#72bf78cc",
-          color: "#fcfcfc",
-          borderColor: "#fcfcfc",
+          border: "2px solid #1F4529",
         },
       }}
     >

@@ -5,9 +5,10 @@ import { useState } from "react";
 type Props = {
   follow: Follow | boolean;
   handleClick: (Follow: Follow | any) => void;
+  color?: string;
 };
 
-const FollowingButton = ({ follow, handleClick }: Props) => {
+const FollowingButton = ({ follow, handleClick, color }: Props) => {
   const [hoverText, setHoverText] = useState("Following");
   return (
     <Box
@@ -16,7 +17,9 @@ const FollowingButton = ({ follow, handleClick }: Props) => {
       px={2}
       py={0.5}
       borderRadius={"20px"}
-      border={"1px solid #000000"}
+      border={1}
+      borderColor={color ? color : "#1F4529"}
+      color={color ? color : "#1F4529"}
       onClick={() => handleClick(follow)}
       onMouseOver={() => setHoverText("Unfollow")}
       onMouseOut={() => setHoverText("Following")}

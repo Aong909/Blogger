@@ -38,7 +38,11 @@ const TopFollower = ({ handleClickFollow, topFollower }: Props) => {
               to={{
                 pathname: `/personal/${follow.following_id}`,
               }}
-              style={{ color: "#3C3352", textDecoration: "none" }}
+              style={{
+                color: "#3C3352",
+                textDecoration: "none",
+                overflow: "hidden",
+              }}
             >
               <Box
                 display={"flex"}

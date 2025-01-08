@@ -334,19 +334,28 @@ const PopupUpdateUser = ({
   } else {
     const handleClickFollow = (fol: boolean) => {
       if (fol) {
-        onUnfollow;
+        onUnfollow();
         saveUnFollow(data.user_id, user.user_id);
       } else {
-        onFollow;
+        onFollow();
         saveFollow(data.user_id, user.user_id);
       }
     };
+    console.log(isFollow);
     return (
       <Box>
         {isFollow ? (
-          <FollowingButton follow={isFollow} handleClick={handleClickFollow} />
+          <FollowingButton
+            follow={isFollow}
+            handleClick={handleClickFollow}
+            color="#fcfcfc"
+          />
         ) : (
-          <FollowButton follow={isFollow} handleClick={handleClickFollow} />
+          <FollowButton
+            follow={isFollow}
+            handleClick={handleClickFollow}
+            color="#fcfcfc"
+          />
         )}
       </Box>
     );
