@@ -14,14 +14,12 @@ import {
   HEADINGS,
   INSERT_IMAGE_OPTIONS,
   INSERT_LINK_OPTIONS,
-  LOGO,
   RichTextAction,
   TEXT_BLOCK_OPTIONS,
   TEXT_FORMAT_OPTIONS,
 } from "../../../constants";
 import { ElementKey, HeaderElement, MarkKey } from "../../../types";
 import FormInsert from "./FormInsert";
-import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -71,19 +69,6 @@ const Toolbar = ({}: Props) => {
   return (
     <Box height={"20px"} mb={"40px"}>
       <ButtonGroup sx={{ gap: "4px" }}>
-        <Link to="/home">
-          <IconButton
-            sx={{
-              height: "100%",
-              borderRadius: "10px",
-              "&:hover": {
-                background: "#9bdfa1",
-              },
-            }}
-          >
-            {LOGO.smallIcon}
-          </IconButton>
-        </Link>
         <Select
           value={header as string}
           onChange={(e) => {

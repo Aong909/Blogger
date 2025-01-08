@@ -39,14 +39,16 @@ const FormInsert = ({ id, open, anchorEl, onClose, editor }: Props) => {
           display={"flex"}
           flexDirection={"column"}
           component={"form"}
-          bgcolor={"#7cc983"}
+          border={1}
+          borderColor={"#1f4529"}
+          bgcolor={"#fcfcfc"}
           py={2}
           px={1}
           onSubmit={(e) => handleSubmit(e)}
         >
           <Stack direction={"row"} gap={"4px"}>
             <TextField
-              label={"Insert link"}
+              label={id == "link" ? "Insert link" : "Insert image link"}
               value={value}
               onChange={(e) => setValue(e.target.value)}
               size="small"
@@ -85,8 +87,10 @@ const FormInsert = ({ id, open, anchorEl, onClose, editor }: Props) => {
             <Button
               type="submit"
               sx={{
-                bgcolor: "#FEFF9F",
-                color: "#3C3352",
+                borderRadius: "20px",
+                border: 1,
+                borderColor: "#1f4529",
+                color: "#1f4529",
               }}
             >
               Insert

@@ -23,6 +23,7 @@ const Editor = () => {
   const [value, setValue] = useState<Descendant[]>();
   const [categories, setCategories] = useState<Category[]>([]);
   const [filterCategory, setFilterCategory] = useState<Category[]>([]);
+  const isFillerCategory = Boolean(filterCategory.length);
   const [contentCategory, setContentCategory] = useState<string[]>([]);
   const [category, setCategory] = useState("");
   const navigator = useNavigate();
@@ -109,11 +110,12 @@ const Editor = () => {
           {contentCategory.map((item, index) => (
             <Box
               key={index}
-              bgcolor={"#72BF78"}
               px={1}
               py={"4px"}
-              color={"#3C3352"}
               borderRadius={4}
+              border={1}
+              borderColor={"#1F4529"}
+              color={"#1F4529"}
               display={"flex"}
               alignItems={"center"}
               gap={1}
@@ -141,11 +143,11 @@ const Editor = () => {
             placeholder="category must not contain any space"
             sx={{ flex: "1" }}
           />
-          {Boolean(filterCategory) && (
+          {isFillerCategory && (
             <Box
-              bgcolor={"#FEFF9F"}
-              border={"1px solid #72BF78"}
-              borderRadius={5}
+              bgcolor={"#fcfcfc"}
+              border={"1px solid #1F4529"}
+              borderRadius={2}
               flex={1}
               position={"absolute"}
               top={"54px"}
@@ -192,12 +194,13 @@ const Editor = () => {
           color="success"
           onClick={handleClickPost}
           sx={{
-            bgcolor: "#72BF78",
+            border: 1,
+            borderColor: "#1F4529",
             borderRadius: "20px",
-            color: "#3C3352",
+            color: "#1F4529",
             ":disabled": {
-              bgcolor: "#6cc073ff",
-              color: "#8d8d8d",
+              borderColor: "#91C788",
+              color: "#91C788",
             },
           }}
           disabled={!value}

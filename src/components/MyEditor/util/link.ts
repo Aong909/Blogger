@@ -4,12 +4,19 @@ import { ReactEditor } from "slate-react";
 import { createParagraphNode } from "./paragraph";
 import { CustomElement } from "../../../types";
 
-export const createLinkNode = (href: any, text: string) => ({
+export const createLinkNode = (href: any, text: string): CustomElement => ({
   type: "link",
   href,
-  children: [{ text: text || "" }],
-  text: text || "",
+  children: [{ text }],
 });
+
+export const removeLink = (editor: ReactEditor, opts = {}) => {
+  Transforms.unwrapNodes(editor as unknown as Editor, {
+    ...opts,
+    match: (n) =>
+      !Editor.isEditor(n) && Element.isElement(n) && n.type === "link",
+  });
+};
 
 export const insertLink = (editor: ReactEditor, url: string) => {
   if (!url) return;
@@ -35,7 +42,7 @@ export const insertLink = (editor: ReactEditor, url: string) => {
       // Insert the new link after the void node
       Transforms.insertNodes(
         editor as unknown as Editor,
-        createParagraphNode([link]),
+        createParagraphNode([link as any]),
         {
           at: Path.next(parentPath),
           select: true,
@@ -56,15 +63,7 @@ export const insertLink = (editor: ReactEditor, url: string) => {
     // is falsey
     Transforms.insertNodes(
       editor as unknown as Editor,
-      createParagraphNode([link])
+      createParagraphNode([link as any])
     );
   }
-};
-
-export const removeLink = (editor: ReactEditor, opts = {}) => {
-  Transforms.unwrapNodes(editor as unknown as Editor, {
-    ...opts,
-    match: (n) =>
-      !Editor.isEditor(n) && Element.isElement(n) && n.type === "link",
-  });
 };
