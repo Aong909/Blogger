@@ -1,5 +1,5 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { LOGO, NAVBAR_ITEM, USER } from "../../constants";
 import { useEffect, useState } from "react";
 import { User } from "../../types";
@@ -19,6 +19,8 @@ const Navbar = ({ setLocalUser }: Props) => {
     user_role: "",
     created_at: "",
   });
+
+  const location = useLocation();
   //get data user from local storage
   const getUserLocalStorage = () => {
     try {
@@ -29,9 +31,24 @@ const Navbar = ({ setLocalUser }: Props) => {
     }
   };
 
+  const isNavbarItem = (id: string) => {
+    const lastIndex = location.pathname.length;
+    const pathname = location.pathname.slice(1, lastIndex);
+
+    if (pathname == id) {
+      return true;
+    } else if (id == "home" && !pathname) {
+      return true;
+    } else if (id == "personal" && pathname == `personal/${user.user_id}`) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   useEffect(() => {
     setUser(getUserLocalStorage);
-  }, []);
+  }, [location]);
 
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -69,7 +86,7 @@ const Navbar = ({ setLocalUser }: Props) => {
               sx={{
                 color: "#1F4529",
                 borderRadius: "30px",
-                paddingRight: "20px",
+                // paddingRight: "20px",
               }}
             >
               <Stack
@@ -78,7 +95,7 @@ const Navbar = ({ setLocalUser }: Props) => {
                 justifyContent={"center"}
                 spacing={1}
               >
-                {item.icon}
+                {isNavbarItem(item.id) ? item.iconOutlined : item.icon}
                 <Typography
                   display={{ xs: "none", lg: "flex" }}
                   fontSize={"18px"}

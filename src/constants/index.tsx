@@ -1,6 +1,7 @@
 import {
   Bookmark,
   BookmarkBorder,
+  BookmarkBorderOutlined,
   BookmarkOutlined,
   BorderColor,
   ChatBubbleOutline,
@@ -18,11 +19,14 @@ import {
   FormatListNumbered,
   FormatQuote,
   FormatUnderlined,
+  HomeOutlined,
   HomeRounded,
   Image,
   Link,
   Person,
   PersonAdd,
+  PersonAddOutlined,
+  PersonOutline,
   Search,
   Settings,
   StrikethroughS,
@@ -169,31 +173,31 @@ export const NAVBAR_ITEM = [
   {
     id: "home",
     icon: <HomeRounded fontSize="large" />,
+    iconOutlined: <HomeOutlined fontSize="large" />,
     label: "Home",
   },
   {
     id: "bookmark",
     icon: <Bookmark fontSize="large" />,
+    iconOutlined: <BookmarkBorderOutlined fontSize="large" />,
     label: "Bookmark",
   },
   {
     id: "following",
     icon: <PersonAdd fontSize="large" />,
+    iconOutlined: <PersonAddOutlined fontSize="large" />,
     label: "Following",
   },
   {
     id: "personal",
     icon: <Person fontSize="large" />,
+    iconOutlined: <PersonOutline fontSize="large" />,
     label: "Personal",
   },
 ];
 
 export const LOGO = {
-  icon: (
-    <Dashboard
-      sx={{ fontSize: "44px", color: "#1F4529", paddingRight: "10px" }}
-    />
-  ),
+  icon: <Dashboard sx={{ fontSize: "50px", color: "#1F4529" }} />,
   smallIcon: <Dashboard sx={{ fontSize: "32px", color: "#1F4529" }} />,
 };
 
