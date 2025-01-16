@@ -341,7 +341,7 @@ const PopupUpdateUser = ({
         saveFollow(data.user_id, user.user_id);
       }
     };
-    console.log(isFollow);
+
     return (
       <Box>
         {isFollow ? (

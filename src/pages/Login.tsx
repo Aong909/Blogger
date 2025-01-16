@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import FormLogin from "../components/Form/FormLogin";
 import FromRegister from "../components/Form/FromRegister";
+import { flatMap } from "lodash";
 
 type Props = {
   setUser: () => void;
@@ -78,7 +79,6 @@ const Login = ({ setUser }: Props) => {
   //     </Box>
   //   </Box>
   // );
-  console.log("isLogin ==> ", isRegister);
   return (
     <Box
       display={"flex"}
@@ -96,63 +96,83 @@ const Login = ({ setUser }: Props) => {
         position={"relative"}
         sx={{ boxShadow: "12" }}
       >
-        <Box className={isRegister ? "form active" : "form"} bgcolor={"blue"}>
-          <Stack className={"form-login"}>
+        <Box className={isRegister ? "form active" : "form"} display={"flex"}>
+          <Stack className={"form-login"} gap={"20px"}>
             <FormLogin setUser={setUser} />
+            <Box display={{ xs: "inline", sm: "none" }}>
+              <Typography>Don,t have an account?</Typography>
+              <Typography
+                sx={{ textDecoration: "underline", cursor: "pointer" }}
+                onClick={() => setIsRegister(true)}
+              >
+                register now
+              </Typography>
+            </Box>
           </Stack>
           <Stack className={"form-register"} gap={"20px"}>
             <Typography>Please signup to continue</Typography>
             <FromRegister setToggle={setIsRegister} />
+            <Box display={{ xs: "inline", sm: "none" }}>
+              <Typography>Already have an account?</Typography>
+              <Typography
+                onClick={() => setIsRegister(false)}
+                sx={{ textDecoration: "underline", cursor: "pointer" }}
+              >
+                login now
+              </Typography>
+            </Box>
           </Stack>
         </Box>
-        <Box
-          className={"description"}
-          width={"40%"}
-          left={0}
-          bgcolor={"#1F4529"}
-          color={"#ffffff"}
-        >
-          <Typography fontSize={"36px"} fontWeight={700}>
-            SSBlogger
-          </Typography>
-
-          <Typography>Already have an account?</Typography>
-          <Button
-            onClick={() => setIsRegister(false)}
-            sx={{
-              color: "#ffffff",
-              border: "2px solid #ffffff",
-              borderRadius: "20px",
-              padding: "8px 20px",
-            }}
+        <Stack display={{ xs: "none", sm: "flex" }}>
+          <Box
+            className={"description"}
+            left={0}
+            bgcolor={"#1F4529"}
+            color={"#ffffff"}
+            width={"40%"}
           >
-            Login
-          </Button>
-        </Box>
-        <Box
-          className={"description"}
-          width={"60%"}
-          right={0}
-          bgcolor={"#ffffff"}
-          color={"#1F4529"}
-        >
-          <Typography fontSize={"36px"} fontWeight={700}>
-            Welcome to SSBlogger
-          </Typography>
+            <Typography fontSize={"36px"} fontWeight={700}>
+              SSBlogger
+            </Typography>
 
-          <Typography>Don,t have an account?</Typography>
-          <Button
-            onClick={() => setIsRegister(true)}
-            sx={{
-              color: "#1F4529",
-              border: "2px solid #1F4529",
-              borderRadius: "20px",
-              padding: "8px 20px",
-            }}
+            <Typography>Already have an account?</Typography>
+            <Button
+              onClick={() => setIsRegister(false)}
+              sx={{
+                color: "#ffffff",
+                border: "2px solid #ffffff",
+                borderRadius: "20px",
+                padding: "8px 20px",
+              }}
+            >
+              Login
+            </Button>
+          </Box>
+          <Box
+            className={"description"}
+            right={0}
+            bgcolor={"#ffffff"}
+            color={"#1F4529"}
+            width={"60%"}
           >
-            Register
-          </Button>
-        </Box>
+            <Typography fontSize={"36px"} fontWeight={700}>
+              Welcome to SSBlogger
+            </Typography>
+
+            <Typography>Don,t have an account?</Typography>
+            <Button
+              onClick={() => setIsRegister(true)}
+              sx={{
+                color: "#1F4529",
+                border: "2px solid #1F4529",
+                borderRadius: "20px",
+                padding: "8px 20px",
+              }}
+            >
+              Register
+            </Button>
+          </Box>
+        </Stack>
       </Box>
     </Box>
   );

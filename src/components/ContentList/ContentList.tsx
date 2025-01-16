@@ -114,7 +114,6 @@ const ContentList = ({ contents, setContent, setFilterContent }: Props) => {
     );
   }
 
-  console.log(contents);
   return (
     <Stack width={"100%"} gap={2}>
       {contents.map((item) => (

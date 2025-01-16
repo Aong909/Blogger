@@ -124,12 +124,13 @@ const Personal = () => {
       >
         <Box
           display={"flex"}
-          minWidth={"520px"}
+          minWidth={{ xs: "100vw", sm: "520px" }}
           flex={1}
           flexDirection={"column"}
           borderLeft={"1px solid #1F4529"}
           borderRight={"1px solid #1F4529"}
           gap={2}
+          pb={"100px"}
           sx={{
             overflowX: "hidden",
             overflowY: "inherit",

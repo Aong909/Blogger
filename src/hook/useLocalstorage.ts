@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 const useLocalstorage = () => {
   const [user, setUser] = useState<string | null>(null);
-  console.log("USER ===>", user);
 
   useEffect(() => {
     //handle storage

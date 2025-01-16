@@ -23,9 +23,7 @@ const App = () => {
   //   }
   // }
 
-  useEffect(() => {
-    console.log("in Use Effect");
-  }, [localStorage.getItem("user")]);
+  useEffect(() => {}, [localStorage.getItem("user")]);
 
   if (!user) {
     return <Login setUser={storageEventHandle} />;
@@ -38,19 +36,8 @@ const App = () => {
         v7_startTransition: true,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          width: "100vw",
-          height: "100vh",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-          }}
-        >
+      <div className="container">
+        <div className="main-content">
           <Navbar setLocalUser={storageEventHandle} />
           <Routes>
             <Route path="/" element={<Home />} />

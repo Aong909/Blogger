@@ -174,7 +174,10 @@ const Content = () => {
     }
   };
 
-  console.log(content);
+  const handleClickUser = (userID: number | undefined) => {
+    navigator(`/personal/${userID}`);
+  };
+
   return (
     <div>
       <Box display={"flex"} maxWidth={"1180px"} pt={1}>
@@ -186,10 +189,11 @@ const Content = () => {
         >
           <Box
             display={"flex"}
-            minWidth={"520px"}
+            minWidth={{ xs: "100vw", sm: "520px" }}
             flex={1}
             flexDirection={"column"}
             gap={2}
+            pb={"100px"}
             borderLeft={"1px solid #1F4529"}
             borderRight={"1px solid #1F4529"}
             sx={{
@@ -198,23 +202,67 @@ const Content = () => {
             }}
           >
             <Stack width={"100%"} gap={2}>
-              <Box p={"10px"} display={"flex"}>
-                <Link to={`/personal/${content?.user_id}`}>
-                  <Box>
-                    <Box
+              <Box p={"10px"} display={"flex"} flexDirection={"column"}>
+                <Box display={"flex"} justifyContent={"space-between"} px={1}>
+                  <Box
+                    display={"flex"}
+                    gap={1}
+                    onClick={() => handleClickUser(content?.user_id)}
+                  >
+                    <Stack
                       display={"flex"}
                       justifyContent={"center"}
                       alignItems={"center"}
                       width={"50px"}
                       height={"50px"}
                       borderRadius={"100%"}
-                      bgcolor={"#72BF78"}
-                      color={"#3C3352"}
+                      border={"1px solid #1F4529"}
+                      color={"#1F4529"}
                     >
                       {USER.icon}
-                    </Box>
+                    </Stack>
+                    <Stack pt={"4px"}>
+                      <Stack
+                        direction={"row"}
+                        gap={1}
+                        alignItems={"center"}
+                        color={"#3C3352"}
+                      >
+                        <Typography fontWeight={600}>
+                          {content?.user_name}
+                        </Typography>
+                        <Typography fontSize={"12px"}>
+                          {CalcDate(content?.created_at)}
+                        </Typography>
+                      </Stack>
+                      <Stack
+                        direction={"row"}
+                        gap={1}
+                        alignItems={"center"}
+                        color={"#3C3352"}
+                      >
+                        <Typography fontSize={"12px"}>
+                          {content?.first_name}
+                        </Typography>
+                        <Typography fontSize={"12px"}>
+                          {content?.last_name}
+                        </Typography>
+                      </Stack>
+                    </Stack>
                   </Box>
-                </Link>
+                  <Box
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                  >
+                    <IconButton
+                      onClick={(e) => setAnchorEl(e.currentTarget)}
+                      disabled={content?.user_id !== Number(userID)}
+                    >
+                      <MoreHoriz />
+                    </IconButton>
+                  </Box>
+                </Box>
 
                 <Box pl={1} width={"100%"}>
                   <Box
@@ -222,48 +270,6 @@ const Content = () => {
                     justifyContent={"space-between"}
                     alignItems={"center"}
                   >
-                    <Link
-                      to={`/personal/${content?.user_id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Stack pt={"4px"}>
-                        <Stack
-                          direction={"row"}
-                          gap={1}
-                          alignItems={"center"}
-                          color={"#3C3352"}
-                        >
-                          <Typography fontWeight={600}>
-                            {content?.user_name}
-                          </Typography>
-                          <Typography fontSize={"12px"}>
-                            {CalcDate(content?.created_at)}
-                          </Typography>
-                        </Stack>
-                        <Stack
-                          direction={"row"}
-                          gap={1}
-                          alignItems={"center"}
-                          color={"#3C3352"}
-                        >
-                          <Typography fontSize={"12px"}>
-                            {content?.first_name}
-                          </Typography>
-                          <Typography fontSize={"12px"}>
-                            {content?.last_name}
-                          </Typography>
-                        </Stack>
-                      </Stack>
-                    </Link>
-                    <Stack justifyContent={"center"} alignItems={"center"}>
-                      <IconButton
-                        onClick={(e) => setAnchorEl(e.currentTarget)}
-                        disabled={content?.user_id !== Number(userID)}
-                      >
-                        <MoreHoriz />
-                      </IconButton>
-                    </Stack>
-
                     <PopoverMoreBtn
                       open={open}
                       anchorEl={anchorEl}
@@ -290,9 +296,9 @@ const Content = () => {
                       {content?.categories?.map((item, index) => (
                         <Box
                           key={index}
-                          bgcolor={"#72BF78"}
                           px={1}
                           py={"4px"}
+                          border={"1px solid #1F4529"}
                           color={"#3C3352"}
                           borderRadius={4}
                           alignItems={"center"}
@@ -341,11 +347,9 @@ const Content = () => {
                   display={"flex"}
                   justifyContent={"center"}
                   alignItems={"center"}
-                  width={"50px"}
-                  height={"50px"}
                   borderRadius={"100%"}
-                  bgcolor={"#72BF78"}
-                  color={"#3C3352"}
+                  border={"1px solid #1F4529"}
+                  color={"#1F4529"}
                 >
                   {USER.icon}
                 </Box>
@@ -371,7 +375,7 @@ const Content = () => {
                     key={comment.id}
                     display={"flex"}
                     borderBottom={"1px solid #1F4529"}
-                    pb={"10px"}
+                    p={"0 10px 10px 10px"}
                   >
                     <Box
                       display={"flex"}
@@ -380,8 +384,8 @@ const Content = () => {
                       width={"50px"}
                       height={"50px"}
                       borderRadius={"100%"}
-                      bgcolor={"#72BF78"}
-                      color={"#3C3352"}
+                      border={"1px solid #1F4529"}
+                      color={"#1F4529"}
                     >
                       {USER.icon}
                     </Box>

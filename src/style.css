@@ -9,6 +9,19 @@ body {
   background: #e8ecd7;
 }
 
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+}
+
+.main-content {
+  display: flex;
+  /* grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr; */
+}
+
 .form {
   width: 40%;
   height: 100%;
@@ -57,7 +70,6 @@ body {
   height: 100%;
   padding: 20px;
   position: absolute;
-  z-index: 1;
   gap: 10px;
 }
 
@@ -79,4 +91,15 @@ div::-webkit-scrollbar-thumb {
 /* Handle on hover */
 div::-webkit-scrollbar-thumb:hover {
   background: #91c788;
+}
+
+@media (max-width: 600px) {
+  .form.active {
+    width: 100%;
+    left: 0;
+  }
+
+  .form {
+    width: 100%;
+  }
 }
