@@ -190,17 +190,14 @@ const Content = () => {
             flex={1}
             flexDirection={"column"}
             gap={2}
+            borderLeft={"1px solid #1F4529"}
+            borderRight={"1px solid #1F4529"}
             sx={{
               overflowX: "hidden",
               overflowY: "inherit",
             }}
           >
-            <Stack
-              width={"100%"}
-              bgcolor={"#FEFF9F"}
-              borderRadius={"20px"}
-              gap={2}
-            >
+            <Stack width={"100%"} gap={2}>
               <Box p={"10px"} display={"flex"}>
                 <Link to={`/personal/${content?.user_id}`}>
                   <Box>
@@ -330,90 +327,99 @@ const Content = () => {
                   </Stack>
                 </Box>
               </Box>
-              <Box width={"100%"} height={"1px"} bgcolor={"#b398ee"}></Box>
-              <Box display={"flex"} flexDirection={"column"} p={"10px"} gap={2}>
-                <Stack direction={"row"} alignItems={"center"}>
-                  <Box
-                    display={"flex"}
-                    justifyContent={"center"}
-                    alignItems={"center"}
-                    width={"50px"}
-                    height={"50px"}
-                    borderRadius={"100%"}
-                    bgcolor={"#72BF78"}
-                    color={"#3C3352"}
+              <Box width={"100%"} height={"1px"} bgcolor={"#1F4529"}></Box>
+              <Box
+                display={"flex"}
+                flexDirection={"row"}
+                alignItems={"center"}
+                borderBottom={"1px solid #1F4529"}
+                px={"10px"}
+                pb={"10px"}
+                gap={2}
+              >
+                <Box
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  width={"50px"}
+                  height={"50px"}
+                  borderRadius={"100%"}
+                  bgcolor={"#72BF78"}
+                  color={"#3C3352"}
+                >
+                  {USER.icon}
+                </Box>
+                <Box pl={1} display={"flex"} width={"100%"}>
+                  <TextField
+                    placeholder={"Post your reply"}
+                    value={textValue}
+                    onChange={(e) => setTextValue(e.target.value)}
+                    multiline
+                    fullWidth
+                  />
+                  <Button
+                    onClick={() => handleClickComment(userID, content?.blog_id)}
+                    disabled={!textValue}
                   >
-                    {USER.icon}
-                  </Box>
-                  <Box pl={1} display={"flex"} width={"100%"}>
-                    <TextField
-                      placeholder={"Post your reply"}
-                      value={textValue}
-                      onChange={(e) => setTextValue(e.target.value)}
-                      multiline
-                      fullWidth
-                    />
-                    <Button
-                      onClick={() =>
-                        handleClickComment(userID, content?.blog_id)
-                      }
-                      disabled={!textValue}
+                    Post
+                  </Button>
+                </Box>
+              </Box>
+              <Box gap={1}>
+                {comments.map((comment) => (
+                  <Box
+                    key={comment.id}
+                    display={"flex"}
+                    borderBottom={"1px solid #1F4529"}
+                    pb={"10px"}
+                  >
+                    <Box
+                      display={"flex"}
+                      justifyContent={"center"}
+                      alignItems={"center"}
+                      width={"50px"}
+                      height={"50px"}
+                      borderRadius={"100%"}
+                      bgcolor={"#72BF78"}
+                      color={"#3C3352"}
                     >
-                      Post
-                    </Button>
-                  </Box>
-                </Stack>
-                <Stack gap={1}>
-                  {comments.map((comment) => (
-                    <Box key={comment.id} display={"flex"}>
-                      <Box
-                        display={"flex"}
-                        justifyContent={"center"}
-                        alignItems={"center"}
-                        width={"50px"}
-                        height={"50px"}
-                        borderRadius={"100%"}
-                        bgcolor={"#72BF78"}
-                        color={"#3C3352"}
-                      >
-                        {USER.icon}
-                      </Box>
-                      <Box pl={1}>
-                        <Stack pt={"4px"}>
-                          <Stack
-                            direction={"row"}
-                            gap={1}
-                            alignItems={"center"}
-                            color={"#3C3352"}
-                          >
-                            <Typography fontWeight={600}>
-                              {comment.user_name}
-                            </Typography>
-                            <Typography fontSize={"12px"}>
-                              {CalcDate(comment.created_at)}
-                            </Typography>
-                          </Stack>
-                          <Stack
-                            direction={"row"}
-                            gap={1}
-                            alignItems={"center"}
-                            color={"#3C3352"}
-                          >
-                            <Typography fontSize={"12px"}>
-                              {comment.first_name}
-                            </Typography>
-                            <Typography fontSize={"12px"}>
-                              {comment.last_name}
-                            </Typography>
-                          </Stack>
-                          <Stack pt={"4px"}>
-                            <Typography>{comment.content}</Typography>
-                          </Stack>
-                        </Stack>
-                      </Box>
+                      {USER.icon}
                     </Box>
-                  ))}
-                </Stack>
+                    <Box pl={1}>
+                      <Stack pt={"4px"}>
+                        <Stack
+                          direction={"row"}
+                          gap={1}
+                          alignItems={"center"}
+                          color={"#3C3352"}
+                        >
+                          <Typography fontWeight={600}>
+                            {comment.user_name}
+                          </Typography>
+                          <Typography fontSize={"12px"}>
+                            {CalcDate(comment.created_at)}
+                          </Typography>
+                        </Stack>
+                        <Stack
+                          direction={"row"}
+                          gap={1}
+                          alignItems={"center"}
+                          color={"#3C3352"}
+                        >
+                          <Typography fontSize={"12px"}>
+                            {comment.first_name}
+                          </Typography>
+                          <Typography fontSize={"12px"}>
+                            {comment.last_name}
+                          </Typography>
+                        </Stack>
+                        <Stack pt={"4px"}>
+                          <Typography>{comment.content}</Typography>
+                        </Stack>
+                      </Stack>
+                    </Box>
+                  </Box>
+                ))}
               </Box>
             </Stack>
           </Box>
